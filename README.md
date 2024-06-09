@@ -24,3 +24,7 @@ Spame is a Discord bot written in discord.py that manages spam channels by remov
 3. Run `pip install -r requirements.txt`.
 4. Set up a .env file by coping the .env.example file and editing it.
 5. Now, run the bot.py program and enjoy! The bot will only run in channels that have names that start with the SPAM_CHANNEL_PREFIX value.
+
+### Docker?
+
+hi arti
