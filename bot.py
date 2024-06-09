@@ -13,7 +13,9 @@ UWU_PWEASE = ", please give me the 'manage messages' permission. I do not have t
 spam: str = environ["DEFAULT_SPAM_MESSAGE"]
 started_once: bool = False
 
-bot: commands.Bot = commands.Bot("6.28!")
+intents = discord.Intents.default()
+intents.message_content = True
+bot: commands.Bot = commands.Bot("6.28!", intents=intents)
 
 
 async def clear_n_pin(message: discord.Message | commands.Context) -> bool:
