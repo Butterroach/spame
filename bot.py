@@ -76,7 +76,7 @@ async def on_message(message: discord.Message) -> None:
 @bot.command()
 async def newspam(ctx: commands.Context, *, new_spam_message: str = None):
     global spam
-    if str(ctx.author.id) not in CHANGERS:
+    if str(ctx.author.id) not in CHANGERS and "*" not in CHANGERS:
         await ctx.reply("You're not a changer! You can NOT change the spam message!")
         return
     if new_spam_message is None:
