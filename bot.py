@@ -27,7 +27,7 @@ TOKEN: str = environ["TOKEN"]
 CHANNEL_PREFIX: str = environ["SPAM_CHANNEL_PREFIX"]
 CHANGERS: list[str] = environ["CHANGERS"]
 CASE_SENSITIVE_SPAM: bool = environ["CASE_SENSITIVE"] == "true"
-UWU_PWEASE = ", please give me the 'manage messages' permission. I do not have the proper permissions to function properly."
+UWU_PWEASE = ", please give me the 'Manage Messages' permission. I do not have the proper permissions to function properly."
 spam: str = environ["DEFAULT_SPAM_MESSAGE"]
 started_once: bool = False
 
