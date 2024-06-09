@@ -29,7 +29,7 @@ async def clear_n_pin(message: discord.Message | commands.Context) -> bool:
     return True
 
 
-async def wrong_message_handle(message: discord.Message) -> bool:
+async def wrong_message_handle(message: discord.Message):
     try:
         await message.delete()
     except discord.Forbidden:
