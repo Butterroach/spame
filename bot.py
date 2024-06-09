@@ -7,14 +7,14 @@ load_dotenv()
 
 TOKEN: str = environ["TOKEN"]
 CHANNEL_PREFIX: str = environ["SPAM_CHANNEL_PREFIX"]
-CHANGERS: list[str] = environ["CHANGERS"].replace(" ", "").split(",")
+CHANGERS: list[str] = environ["CHANGERS"]
 CASE_SENSITIVE_SPAM: bool = environ["CASE_SENSITIVE"] == "true"
 UWU_PWEASE = ", please give me the 'manage messages' permission. I do not have the proper permissions to function properly."
 spam: str = environ["DEFAULT_SPAM_MESSAGE"]
 started_once: bool = False
 
 intents = discord.Intents.default()
-intents.message_content = True
+intents.message_content = intents.members = True
 bot: commands.Bot = commands.Bot("6.28!", intents=intents)
 
 
@@ -55,7 +55,15 @@ async def on_ready() -> None:
 
 @bot.event
 async def on_message(message: discord.Message) -> None:
-    if not message.channel.name.startswith(CHANNEL_PREFIX):
+    await bot.process_commands(message)
+    if not message.channel.name.startswith(
+        CHANNEL_PREFIX
+    ) or message.content.startswith(bot.command_prefix):
+        return
+    if message.type == discord.MessageType.pins_add and message.author == bot.user:
+        print(".")
+        await message.delete()
+    if message.author.bot:
         return
     if CASE_SENSITIVE_SPAM:
         if message.content != spam:
@@ -67,7 +75,8 @@ async def on_message(message: discord.Message) -> None:
 
 @bot.command()
 async def newspam(ctx: commands.Context, *, new_spam_message: str = None):
-    if ctx.author.id not in CHANGERS:
+    global spam
+    if str(ctx.author.id) not in CHANGERS:
         await ctx.reply("You're not a changer! You can NOT change the spam message!")
         return
     if new_spam_message is None:
