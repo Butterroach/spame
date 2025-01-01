@@ -1,6 +1,6 @@
 """
     spame - a discord.py bot made for managing spam channels
-    Copyright (C) 2024 Butterroach
+    Copyright (C) 2024-2025 Butterroach
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
